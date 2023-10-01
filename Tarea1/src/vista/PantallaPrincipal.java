@@ -26,9 +26,9 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        jLabelTituloPantallaPrincipal = new javax.swing.JLabel();
+        jPanelSalonesDisponibles = new javax.swing.JPanel();
+        labelSalonesDisponibles = new javax.swing.JLabel();
         ButtonSalonHabana = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -40,39 +40,43 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("GESTIÓN HOTELERA LA HABANA");
+        jLabelTituloPantallaPrincipal.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabelTituloPantallaPrincipal.setText("GESTIÓN HOTELERA LA HABANA");
 
-        jLabel2.setText("Salones disponibles");
+        labelSalonesDisponibles.setText("Salones disponibles");
 
-        ButtonSalonHabana.setText("Salón Habana");
+        ButtonSalonHabana.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/salonLaHabanaOriginal.png"))); // NOI18N
+        ButtonSalonHabana.setToolTipText("Salón La Habana");
+        ButtonSalonHabana.setBorder(null);
+        ButtonSalonHabana.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/salonLaHabanaMini.png"))); // NOI18N
         ButtonSalonHabana.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonSalonHabanaActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel2)
+        javax.swing.GroupLayout jPanelSalonesDisponiblesLayout = new javax.swing.GroupLayout(jPanelSalonesDisponibles);
+        jPanelSalonesDisponibles.setLayout(jPanelSalonesDisponiblesLayout);
+        jPanelSalonesDisponiblesLayout.setHorizontalGroup(
+            jPanelSalonesDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelSalonesDisponiblesLayout.createSequentialGroup()
+                .addGroup(jPanelSalonesDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelSalonesDisponiblesLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(labelSalonesDisponibles))
+                    .addGroup(jPanelSalonesDisponiblesLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(ButtonSalonHabana)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ButtonSalonHabana)
-                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 306, Short.MAX_VALUE)
-                .addComponent(ButtonSalonHabana)
-                .addContainerGap())
+        jPanelSalonesDisponiblesLayout.setVerticalGroup(
+            jPanelSalonesDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelSalonesDisponiblesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelSalonesDisponibles)
+                .addGap(32, 32, 32)
+                .addComponent(ButtonSalonHabana, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(118, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Inicio");
@@ -98,20 +102,20 @@ public class PantallaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelSalonesDisponibles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(230, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(jLabelTituloPantallaPrincipal)
                 .addGap(213, 213, 213))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelTituloPantallaPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelSalonesDisponibles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -165,12 +169,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonSalonHabana;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabelTituloPantallaPrincipal;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanelSalonesDisponibles;
+    private javax.swing.JLabel labelSalonesDisponibles;
     // End of variables declaration//GEN-END:variables
 }
