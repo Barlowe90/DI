@@ -8,7 +8,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     public PantallaPrincipal() {
         initComponents();
         
-        // Lo ideal sería añadir esto dentro del constructor, en initComponents(), pero al estar bloqueado lo añado aquí
+        // Lo ideal sería añadir esto en initComponents(), pero al estar bloqueado lo añado aquí
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         int width = this.getSize().width;
         int height = this.getSize().height;
