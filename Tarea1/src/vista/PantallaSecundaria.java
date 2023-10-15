@@ -1,16 +1,25 @@
 package vista;
 
 import java.awt.Dimension;
+import java.util.List;
 import java.awt.Toolkit;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import modelo.Reserva;
+import modelo.TipoEvento;
 
 public class PantallaSecundaria extends javax.swing.JDialog {
 
     public static String EVENTO = "Congreso";
-    
+    private boolean reservaRealizada = false;
+
     public PantallaSecundaria(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         int width = this.getSize().width;
         int height = this.getSize().height;
@@ -50,7 +59,7 @@ public class PantallaSecundaria extends javax.swing.JDialog {
         jComboBoxTipoEvento = new javax.swing.JComboBox<>();
         jSpinnerNumeroAsistentes = new javax.swing.JSpinner();
         jScrollPaneTipoCocina = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jListTipoCocina = new javax.swing.JList<>();
         labelJornadasCongreso = new javax.swing.JLabel();
         SpinnerJornadasCongreso = new javax.swing.JSpinner();
         labelAsistentes = new javax.swing.JLabel();
@@ -64,7 +73,7 @@ public class PantallaSecundaria extends javax.swing.JDialog {
 
         labelTituloReservaSalon.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         labelTituloReservaSalon.setText("RESERVA SALÓN LA HABANA");
-        labelTituloReservaSalon.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        labelTituloReservaSalon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         labelDatosPersonalesReserva.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelDatosPersonalesReserva.setText("Datos personales reserva");
@@ -160,13 +169,13 @@ public class PantallaSecundaria extends javax.swing.JDialog {
         jSpinnerNumeroAsistentes.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
         jSpinnerNumeroAsistentes.setToolTipText("Seleccione cuántos asistentes asistirán al evento");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        jListTipoCocina.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Bufé", "Carta", "Cita con el chef", "No precisa" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jList1.setToolTipText("Seleccione el tipo de cocina que precisará el día del evento");
-        jScrollPaneTipoCocina.setViewportView(jList1);
+        jListTipoCocina.setToolTipText("Seleccione el tipo de cocina que precisará el día del evento");
+        jScrollPaneTipoCocina.setViewportView(jListTipoCocina);
 
         labelJornadasCongreso.setText("Nº jornadas del congreso");
         labelJornadasCongreso.setEnabled(false);
@@ -301,46 +310,81 @@ public class PantallaSecundaria extends javax.swing.JDialog {
 
     private void jButtonRealizarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRealizarReservaActionPerformed
         String texto1, texto2;
-        boolean todoCorrecto = false;
-                
+        boolean todoCorrecto = true;
+
         texto1 = jTextFieldNombre.getText();
         texto2 = jTextFieldTelefono.getText();
-        
-        if (texto1.isEmpty()){
-            jTextFieldNombre.setText("Falta añadir el nombre");
-            todoCorrecto = false;
-        } else if (texto2.isEmpty()) {
-            jTextFieldTelefono.setText("Falta añadir el número");
-            todoCorrecto = false;
-        } else
-            todoCorrecto = true;
-        
-        if(todoCorrecto)
-            System.out.println("Reserva guardada");
-        else
-            System.out.println("Reserva no guardada");
 
+        if (texto1.isEmpty()) {
+            todoCorrecto = false;
+            JOptionPane.showMessageDialog(this, "El campo 'Nombre' es obligatorio.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (texto2.isEmpty()) {
+            todoCorrecto = false;
+            JOptionPane.showMessageDialog(this, "El campo 'Teléfono' es obligatorio.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        if (todoCorrecto) {
+            int res = JOptionPane.showConfirmDialog(this, "¿Son los datos correctos?", "Confirmación de datos", JOptionPane.YES_NO_OPTION);
+            if (res == JOptionPane.YES_OPTION) {
+                reservaRealizada = true;
+                dispose(); // En este punto volvemos a PantallaPrincipal
+            }
+        }
     }//GEN-LAST:event_jButtonRealizarReservaActionPerformed
+
+    public Reserva obtenerValoresFormulario() {
+        // Como el spinner no da un LocalDate tenemos que convertirlo
+        Date dateValue = (Date) jSpinnerFecha.getValue();   // Primero cogemos el valor y lo casteamos a Date
+        Instant instant = dateValue.toInstant();            // Pasamos el Date a un momento en el tiempo
+        ZoneId zoneId = ZoneId.systemDefault();             // Ese Obtenemos la zona del ordenador
+        LocalDate localDate = instant.atZone(zoneId).toLocalDate(); // Convertimos el instant en un LocalDate ajustándolo
+        // a la zona horaria especificada
+
+        // guardamos los elementos seleccionados en caso de que haya más de uno
+        List<String> elementosSeleccionados = jListTipoCocina.getSelectedValuesList();
+
+        // Como en el comboBox aparec en minúscula hacemos el cambio a mayúcula para que coincida con el enumerado
+        String tipoEventoSeleccionado = ((String) jComboBoxTipoEvento.getSelectedItem()).toUpperCase();
+        TipoEvento tipoEvento = TipoEvento.valueOf(tipoEventoSeleccionado);
+
+        Reserva reserva = new Reserva(jTextFieldNombre.getText(),
+                Integer.parseInt(jTextFieldTelefono.getText()),
+                (int) jSpinnerNumeroDias.getValue(),
+                (int) jSpinnerNumeroHabitaciones.getValue(),
+                localDate,
+                (int) jSpinnerNumeroAsistentes.getValue(),
+                elementosSeleccionados,
+                tipoEvento,
+                (int) jSpinnerNumeroAsistentes.getValue(),
+                jRadioButtonSiHabitaciones.isSelected());
+        return reserva;
+    }
+
+    public boolean isReservaRealizada() {
+        return reservaRealizada;
+    }
 
     private void jComboBoxTipoEventoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxTipoEventoItemStateChanged
         String seleccion;
-        
+
         seleccion = jComboBoxTipoEvento.getSelectedItem().toString();
-        
-        if(EVENTO.equals(seleccion)){
+
+        if (EVENTO.equals(seleccion)) {
             labelJornadasCongreso.setEnabled(true);
             SpinnerJornadasCongreso.setEnabled(true);
             labelAsistentes.setEnabled(true);
             jRadioButtonSiHabitaciones.setEnabled(true);
             jRadioButtonNoHabitaciones.setEnabled(true);
-        }else{
+        } else {
             labelJornadasCongreso.setEnabled(false);
             SpinnerJornadasCongreso.setEnabled(false);
             labelAsistentes.setEnabled(false);
             jRadioButtonSiHabitaciones.setEnabled(false);
             jRadioButtonNoHabitaciones.setEnabled(false);
         }
-            
+
     }//GEN-LAST:event_jComboBoxTipoEventoItemStateChanged
 
     /**
@@ -390,7 +434,7 @@ public class PantallaSecundaria extends javax.swing.JDialog {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButtonRealizarReserva;
     private javax.swing.JComboBox<String> jComboBoxTipoEvento;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jListTipoCocina;
     private javax.swing.JPanel jPanelDatosPersonalesReserva;
     private javax.swing.JPanel jPanelEvento;
     private javax.swing.JRadioButton jRadioButtonNoHabitaciones;

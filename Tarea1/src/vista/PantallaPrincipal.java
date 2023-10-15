@@ -2,12 +2,18 @@ package vista;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.time.LocalDate;
+import java.util.List;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import modelo.Reserva;
+import modelo.TipoEvento;
 
 public class PantallaPrincipal extends javax.swing.JFrame {
 
     public PantallaPrincipal() {
         initComponents();
-        
+
         // Lo ideal sería añadir esto en initComponents(), pero al estar bloqueado lo añado aquí
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         int width = this.getSize().width;
@@ -125,12 +131,46 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         PantallaSecundaria ps = new PantallaSecundaria(this, rootPaneCheckingEnabled);
         ps.setVisible(true);
+        mostrarBienvenida(ps);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void ButtonSalonHabanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSalonHabanaActionPerformed
         PantallaSecundaria ps = new PantallaSecundaria(this, rootPaneCheckingEnabled);
         ps.setVisible(true);
+        mostrarBienvenida(ps);
     }//GEN-LAST:event_ButtonSalonHabanaActionPerformed
+
+    private void mostrarBienvenida(PantallaSecundaria ps) {
+        if (ps.isReservaRealizada()) {
+            Reserva reserva = ps.obtenerValoresFormulario();
+            String nombre = reserva.getNombre();
+            int telefono = reserva.getTelefono();
+            int numeroDias = reserva.getNumeroDias();
+            int numeroHabitaciones = reserva.getNumeroHabitaciones();
+            LocalDate fecha = reserva.getFechaEvento();
+            int numeroAsistentesEvento = reserva.getNumeroAsistentesEvento();
+            List<String> tipoCocina = reserva.getTipoCocina();
+            TipoEvento tipoEvento = reserva.getTipoEvento();
+            int numeroJornadasCongreso = reserva.getNumeroJornadasCongreso();
+            boolean asistentesNecesitanHabitaciones = reserva.isAsistentesNecesitanHabitaciones();
+
+            // Construimos el mensaje que vamos a mostrar en el OptionPane
+            StringBuilder mensaje = new StringBuilder();
+            mensaje.append("Gracias por su reserva, ").append(nombre).append("\n");
+            mensaje.append("La información de su reserva es:\n");
+            mensaje.append("Teléfono: ").append(telefono).append("\n");
+            mensaje.append("Número de días: ").append(numeroDias).append("\n");
+            mensaje.append("Número de habitaciones: ").append(numeroHabitaciones).append("\n");
+            mensaje.append("Fecha del evento: ").append(fecha).append("\n");
+            mensaje.append("Número de asistentes al evento: ").append(numeroAsistentesEvento).append("\n");
+            mensaje.append("Tipo de cocina: ").append(tipoCocina).append("\n");
+            mensaje.append("Tipo de evento: ").append(tipoEvento).append("\n");
+            mensaje.append("Número de jornadas de congreso: ").append(numeroJornadasCongreso).append("\n");
+            mensaje.append("¿Los asistentes necesitan habitaciones? ").append(asistentesNecesitanHabitaciones ? "Sí" : "No");
+
+            JOptionPane.showMessageDialog(this, mensaje.toString(), "Mensaje de bienvenida", JOptionPane.PLAIN_MESSAGE);
+        }
+    }
 
     /**
      * @param args the command line arguments
