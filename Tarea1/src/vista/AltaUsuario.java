@@ -52,6 +52,7 @@ public class AltaUsuario extends javax.swing.JDialog {
         jComboBoxProvincia = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Alta usuario");
         setMinimumSize(new java.awt.Dimension(300, 300));
 
         jPanelDialogo.setLayout(new java.awt.BorderLayout());
