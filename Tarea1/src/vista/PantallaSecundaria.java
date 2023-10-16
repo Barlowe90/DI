@@ -14,10 +14,11 @@ import modelo.TipoEvento;
 public class PantallaSecundaria extends javax.swing.JDialog {
 
     public static String EVENTO = "Congreso";
-    private boolean reservaRealizada = false;
+    private PantallaPrincipal pantallaPrincipal;
 
     public PantallaSecundaria(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        pantallaPrincipal = (PantallaPrincipal) parent;
         initComponents();
 
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
@@ -309,12 +310,21 @@ public class PantallaSecundaria extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRealizarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRealizarReservaActionPerformed
+        if (comprobarCamposObligatorios()) {
+            int res = JOptionPane.showConfirmDialog(this, "¿Son los datos correctos?", "Confirmación de datos", JOptionPane.YES_NO_OPTION);
+            if (res == JOptionPane.YES_OPTION) {
+                dispose();
+                pantallaPrincipal.mostrarBienvenida(obtenerValoresFormulario());
+            }
+        }
+    }//GEN-LAST:event_jButtonRealizarReservaActionPerformed
+
+    public boolean comprobarCamposObligatorios() {
         String texto1, texto2;
         boolean todoCorrecto = true;
 
         texto1 = jTextFieldNombre.getText();
         texto2 = jTextFieldTelefono.getText();
-
         if (texto1.isEmpty()) {
             todoCorrecto = false;
             JOptionPane.showMessageDialog(this, "El campo 'Nombre' es obligatorio.",
@@ -324,23 +334,16 @@ public class PantallaSecundaria extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "El campo 'Teléfono' es obligatorio.",
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
-
-        if (todoCorrecto) {
-            int res = JOptionPane.showConfirmDialog(this, "¿Son los datos correctos?", "Confirmación de datos", JOptionPane.YES_NO_OPTION);
-            if (res == JOptionPane.YES_OPTION) {
-                reservaRealizada = true;
-                dispose(); // En este punto volvemos a PantallaPrincipal
-            }
-        }
-    }//GEN-LAST:event_jButtonRealizarReservaActionPerformed
+        return todoCorrecto;
+    }
 
     public Reserva obtenerValoresFormulario() {
         // Como el spinner no da un LocalDate tenemos que convertirlo
         Date dateValue = (Date) jSpinnerFecha.getValue();   // Primero cogemos el valor y lo casteamos a Date
         Instant instant = dateValue.toInstant();            // Pasamos el Date a un momento en el tiempo
         ZoneId zoneId = ZoneId.systemDefault();             // Ese Obtenemos la zona del ordenador
-        LocalDate localDate = instant.atZone(zoneId).toLocalDate(); // Convertimos el instant en un LocalDate ajustándolo
-        // a la zona horaria especificada
+        // Convertimos el instant en un LocalDate ajustándolo a la zona horaria especificada
+        LocalDate localDate = instant.atZone(zoneId).toLocalDate();
 
         // guardamos los elementos seleccionados en caso de que haya más de uno
         List<String> elementosSeleccionados = jListTipoCocina.getSelectedValuesList();
@@ -360,10 +363,6 @@ public class PantallaSecundaria extends javax.swing.JDialog {
                 (int) jSpinnerNumeroAsistentes.getValue(),
                 jRadioButtonSiHabitaciones.isSelected());
         return reserva;
-    }
-
-    public boolean isReservaRealizada() {
-        return reservaRealizada;
     }
 
     private void jComboBoxTipoEventoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxTipoEventoItemStateChanged

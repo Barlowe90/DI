@@ -37,9 +37,11 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         labelSalonesDisponibles = new javax.swing.JLabel();
         ButtonSalonHabana = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuInicio = new javax.swing.JMenu();
+        jMenuSalonesDisponibles = new javax.swing.JMenu();
+        jMenuItemSalonHabana = new javax.swing.JMenuItem();
+        jMenuClientes = new javax.swing.JMenu();
+        jMenuItemAlta = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("La Habana");
@@ -82,23 +84,35 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addComponent(labelSalonesDisponibles)
                 .addGap(32, 32, 32)
                 .addComponent(ButtonSalonHabana, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
 
-        jMenu1.setText("Inicio");
-        jMenuBar1.add(jMenu1);
+        jMenuInicio.setText("Inicio");
+        jMenuBar1.add(jMenuInicio);
 
-        jMenu2.setText("Salones disponibles");
+        jMenuSalonesDisponibles.setText("Salones disponibles");
 
-        jMenuItem1.setText("Salón Habana");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemSalonHabana.setText("Salón Habana");
+        jMenuItemSalonHabana.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenuItemSalonHabanaActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        jMenuSalonesDisponibles.add(jMenuItemSalonHabana);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(jMenuSalonesDisponibles);
+
+        jMenuClientes.setText("Clientes");
+
+        jMenuItemAlta.setText("Alta");
+        jMenuItemAlta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAltaActionPerformed(evt);
+            }
+        });
+        jMenuClientes.add(jMenuItemAlta);
+
+        jMenuBar1.add(jMenuClientes);
 
         setJMenuBar(jMenuBar1);
 
@@ -111,7 +125,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 .addComponent(jPanelSalonesDisponibles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(230, Short.MAX_VALUE)
+                .addContainerGap(323, Short.MAX_VALUE)
                 .addComponent(jLabelTituloPantallaPrincipal)
                 .addGap(213, 213, 213))
         );
@@ -128,48 +142,50 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMenuItemSalonHabanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSalonHabanaActionPerformed
         PantallaSecundaria ps = new PantallaSecundaria(this, rootPaneCheckingEnabled);
         ps.setVisible(true);
-        mostrarBienvenida(ps);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jMenuItemSalonHabanaActionPerformed
 
     private void ButtonSalonHabanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSalonHabanaActionPerformed
         PantallaSecundaria ps = new PantallaSecundaria(this, rootPaneCheckingEnabled);
         ps.setVisible(true);
-        mostrarBienvenida(ps);
     }//GEN-LAST:event_ButtonSalonHabanaActionPerformed
 
-    private void mostrarBienvenida(PantallaSecundaria ps) {
-        if (ps.isReservaRealizada()) {
-            Reserva reserva = ps.obtenerValoresFormulario();
-            String nombre = reserva.getNombre();
-            int telefono = reserva.getTelefono();
-            int numeroDias = reserva.getNumeroDias();
-            int numeroHabitaciones = reserva.getNumeroHabitaciones();
-            LocalDate fecha = reserva.getFechaEvento();
-            int numeroAsistentesEvento = reserva.getNumeroAsistentesEvento();
-            List<String> tipoCocina = reserva.getTipoCocina();
-            TipoEvento tipoEvento = reserva.getTipoEvento();
-            int numeroJornadasCongreso = reserva.getNumeroJornadasCongreso();
-            boolean asistentesNecesitanHabitaciones = reserva.isAsistentesNecesitanHabitaciones();
+    private void jMenuItemAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAltaActionPerformed
+        AltaUsuario au = new AltaUsuario(this, rootPaneCheckingEnabled);
+        au.setVisible(true);
+    }//GEN-LAST:event_jMenuItemAltaActionPerformed
 
-            // Construimos el mensaje que vamos a mostrar en el OptionPane
-            StringBuilder mensaje = new StringBuilder();
-            mensaje.append("Gracias por su reserva, ").append(nombre).append("\n");
-            mensaje.append("La información de su reserva es:\n");
-            mensaje.append("Teléfono: ").append(telefono).append("\n");
-            mensaje.append("Número de días: ").append(numeroDias).append("\n");
-            mensaje.append("Número de habitaciones: ").append(numeroHabitaciones).append("\n");
-            mensaje.append("Fecha del evento: ").append(fecha).append("\n");
-            mensaje.append("Número de asistentes al evento: ").append(numeroAsistentesEvento).append("\n");
-            mensaje.append("Tipo de cocina: ").append(tipoCocina).append("\n");
-            mensaje.append("Tipo de evento: ").append(tipoEvento).append("\n");
+    public void mostrarBienvenida(Reserva reserva) {
+        String nombre = reserva.getNombre();
+        int telefono = reserva.getTelefono();
+        int numeroDias = reserva.getNumeroDias();
+        int numeroHabitaciones = reserva.getNumeroHabitaciones();
+        LocalDate fecha = reserva.getFechaEvento();
+        int numeroAsistentesEvento = reserva.getNumeroAsistentesEvento();
+        List<String> tipoCocina = reserva.getTipoCocina();
+        TipoEvento tipoEvento = reserva.getTipoEvento();
+        int numeroJornadasCongreso = reserva.getNumeroJornadasCongreso();
+        boolean asistentesNecesitanHabitaciones = reserva.isAsistentesNecesitanHabitaciones();
+
+        // Construimos el mensaje que vamos a mostrar en el OptionPane
+        StringBuilder mensaje = new StringBuilder();
+        mensaje.append("Gracias por su reserva, ").append(nombre).append("\n\n");
+        mensaje.append("La información de su reserva es:\n");
+        mensaje.append("Teléfono: ").append(telefono).append("\n");
+        mensaje.append("Número de días: ").append(numeroDias).append("\n");
+        mensaje.append("Número de habitaciones: ").append(numeroHabitaciones).append("\n");
+        mensaje.append("Fecha del evento: ").append(fecha).append("\n");
+        mensaje.append("Número de asistentes al evento: ").append(numeroAsistentesEvento).append("\n");
+        mensaje.append("Tipo de cocina: ").append(tipoCocina).append("\n");
+        mensaje.append("Tipo de evento: ").append(tipoEvento).append("\n");
+        if (tipoEvento == tipoEvento.CONGRESO) {
             mensaje.append("Número de jornadas de congreso: ").append(numeroJornadasCongreso).append("\n");
             mensaje.append("¿Los asistentes necesitan habitaciones? ").append(asistentesNecesitanHabitaciones ? "Sí" : "No");
-
-            JOptionPane.showMessageDialog(this, mensaje.toString(), "Mensaje de bienvenida", JOptionPane.PLAIN_MESSAGE);
         }
+
+        JOptionPane.showMessageDialog(this, mensaje.toString(), "Mensaje de bienvenida", JOptionPane.PLAIN_MESSAGE);
     }
 
     /**
@@ -210,10 +226,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonSalonHabana;
     private javax.swing.JLabel jLabelTituloPantallaPrincipal;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenu jMenuClientes;
+    private javax.swing.JMenu jMenuInicio;
+    private javax.swing.JMenuItem jMenuItemAlta;
+    private javax.swing.JMenuItem jMenuItemSalonHabana;
+    private javax.swing.JMenu jMenuSalonesDisponibles;
     private javax.swing.JPanel jPanelSalonesDisponibles;
     private javax.swing.JLabel labelSalonesDisponibles;
     // End of variables declaration//GEN-END:variables
