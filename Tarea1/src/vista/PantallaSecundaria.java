@@ -40,6 +40,8 @@ public class PantallaSecundaria extends javax.swing.JDialog {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         labelTituloReservaSalon = new javax.swing.JLabel();
+        jButtonRealizarReserva = new javax.swing.JButton();
+        jPanelCenter = new javax.swing.JPanel();
         jPanelDatosPersonalesReserva = new javax.swing.JPanel();
         labelDatosPersonalesReserva = new javax.swing.JLabel();
         labelNombre = new javax.swing.JLabel();
@@ -66,7 +68,6 @@ public class PantallaSecundaria extends javax.swing.JDialog {
         labelAsistentes = new javax.swing.JLabel();
         jRadioButtonSiHabitaciones = new javax.swing.JRadioButton();
         jRadioButtonNoHabitaciones = new javax.swing.JRadioButton();
-        jButtonRealizarReserva = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Reservas La Habana");
@@ -75,6 +76,17 @@ public class PantallaSecundaria extends javax.swing.JDialog {
         labelTituloReservaSalon.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         labelTituloReservaSalon.setText("RESERVA SALÓN LA HABANA");
         labelTituloReservaSalon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(labelTituloReservaSalon, java.awt.BorderLayout.NORTH);
+
+        jButtonRealizarReserva.setText("Realizar reserva");
+        jButtonRealizarReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRealizarReservaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonRealizarReserva, java.awt.BorderLayout.SOUTH);
+
+        jPanelCenter.setLayout(new javax.swing.BoxLayout(jPanelCenter, javax.swing.BoxLayout.Y_AXIS));
 
         labelDatosPersonalesReserva.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelDatosPersonalesReserva.setText("Datos personales reserva");
@@ -123,14 +135,14 @@ public class PantallaSecundaria extends javax.swing.JDialog {
                                 .addComponent(labelNumeroHabitaciones)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jSpinnerNumeroHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         jPanelDatosPersonalesReservaLayout.setVerticalGroup(
             jPanelDatosPersonalesReservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDatosPersonalesReservaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(labelDatosPersonalesReserva)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelDatosPersonalesReservaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNombre)
                     .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -144,6 +156,8 @@ public class PantallaSecundaria extends javax.swing.JDialog {
                     .addComponent(jSpinnerNumeroHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13))
         );
+
+        jPanelCenter.add(jPanelDatosPersonalesReserva);
 
         labelEvento.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         labelEvento.setText("Evento");
@@ -235,7 +249,7 @@ public class PantallaSecundaria extends javax.swing.JDialog {
                                 .addGroup(jPanelEventoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jComboBoxTipoEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(SpinnerJornadasCongreso, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(38, Short.MAX_VALUE))))
+                                .addContainerGap(52, Short.MAX_VALUE))))
                     .addGroup(jPanelEventoLayout.createSequentialGroup()
                         .addComponent(labelEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -264,47 +278,12 @@ public class PantallaSecundaria extends javax.swing.JDialog {
                         .addComponent(jRadioButtonNoHabitaciones)
                         .addComponent(jRadioButtonSiHabitaciones))
                     .addComponent(jScrollPaneTipoCocina, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(42, Short.MAX_VALUE))
-        );
-
-        jButtonRealizarReserva.setText("Realizar reserva");
-        jButtonRealizarReserva.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRealizarReservaActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelDatosPersonalesReserva, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelEvento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(282, 282, 282)
-                .addComponent(jButtonRealizarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(labelTituloReservaSalon)
-                .addGap(210, 210, 210))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(labelTituloReservaSalon)
-                .addGap(27, 27, 27)
-                .addComponent(jPanelDatosPersonalesReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanelEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonRealizarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
-        );
+
+        jPanelCenter.add(jPanelEvento);
+
+        getContentPane().add(jPanelCenter, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -434,6 +413,7 @@ public class PantallaSecundaria extends javax.swing.JDialog {
     private javax.swing.JButton jButtonRealizarReserva;
     private javax.swing.JComboBox<String> jComboBoxTipoEvento;
     private javax.swing.JList<String> jListTipoCocina;
+    private javax.swing.JPanel jPanelCenter;
     private javax.swing.JPanel jPanelDatosPersonalesReserva;
     private javax.swing.JPanel jPanelEvento;
     private javax.swing.JRadioButton jRadioButtonNoHabitaciones;

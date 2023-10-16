@@ -31,10 +31,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         jLabelTituloPantallaPrincipal = new javax.swing.JLabel();
         jPanelSalonesDisponibles = new javax.swing.JPanel();
-        labelSalonesDisponibles = new javax.swing.JLabel();
         ButtonSalonHabana = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuInicio = new javax.swing.JMenu();
@@ -48,10 +50,35 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
 
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
         jLabelTituloPantallaPrincipal.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelTituloPantallaPrincipal.setText("GESTIÓN HOTELERA LA HABANA");
 
-        labelSalonesDisponibles.setText("Salones disponibles");
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 788, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabelTituloPantallaPrincipal)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGap(37, 37, 37)
+                    .addComponent(jLabelTituloPantallaPrincipal)
+                    .addContainerGap(38, Short.MAX_VALUE)))
+        );
+
+        jPanel1.add(jPanel2, java.awt.BorderLayout.NORTH);
+
+        jPanelSalonesDisponibles.setLayout(new java.awt.GridBagLayout());
 
         ButtonSalonHabana.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/salonLaHabanaOriginal.png"))); // NOI18N
         ButtonSalonHabana.setToolTipText("Salón La Habana");
@@ -62,30 +89,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 ButtonSalonHabanaActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(32, 34, 198, 529);
+        jPanelSalonesDisponibles.add(ButtonSalonHabana, gridBagConstraints);
 
-        javax.swing.GroupLayout jPanelSalonesDisponiblesLayout = new javax.swing.GroupLayout(jPanelSalonesDisponibles);
-        jPanelSalonesDisponibles.setLayout(jPanelSalonesDisponiblesLayout);
-        jPanelSalonesDisponiblesLayout.setHorizontalGroup(
-            jPanelSalonesDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelSalonesDisponiblesLayout.createSequentialGroup()
-                .addGroup(jPanelSalonesDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelSalonesDisponiblesLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(labelSalonesDisponibles))
-                    .addGroup(jPanelSalonesDisponiblesLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(ButtonSalonHabana)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanelSalonesDisponiblesLayout.setVerticalGroup(
-            jPanelSalonesDisponiblesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelSalonesDisponiblesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelSalonesDisponibles)
-                .addGap(32, 32, 32)
-                .addComponent(ButtonSalonHabana, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(198, Short.MAX_VALUE))
-        );
+        jPanel1.add(jPanelSalonesDisponibles, java.awt.BorderLayout.CENTER);
 
         jMenuInicio.setText("Inicio");
         jMenuBar1.add(jMenuInicio);
@@ -121,22 +132,16 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanelSalonesDisponibles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(323, Short.MAX_VALUE)
-                .addComponent(jLabelTituloPantallaPrincipal)
-                .addGap(213, 213, 213))
+                .addGap(350, 350, 350)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabelTituloPantallaPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanelSalonesDisponibles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(213, 213, 213)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -232,7 +237,8 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemAlta;
     private javax.swing.JMenuItem jMenuItemSalonHabana;
     private javax.swing.JMenu jMenuSalonesDisponibles;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelSalonesDisponibles;
-    private javax.swing.JLabel labelSalonesDisponibles;
     // End of variables declaration//GEN-END:variables
 }
