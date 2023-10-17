@@ -4,7 +4,6 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.time.LocalDate;
 import java.util.List;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import modelo.Reserva;
 import modelo.TipoEvento;
@@ -31,14 +30,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        jPanelMain = new javax.swing.JPanel();
+        jPanelNorte = new javax.swing.JPanel();
         jLabelTituloPantallaPrincipal = new javax.swing.JLabel();
-        jPanelSalonesDisponibles = new javax.swing.JPanel();
+        jPanelCentro = new javax.swing.JPanel();
         ButtonSalonHabana = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuBar = new javax.swing.JMenuBar();
         jMenuInicio = new javax.swing.JMenu();
         jMenuSalonesDisponibles = new javax.swing.JMenu();
         jMenuItemSalonHabana = new javax.swing.JMenuItem();
@@ -47,38 +45,43 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("La Habana");
+        setPreferredSize(new java.awt.Dimension(700, 400));
         setResizable(false);
-        setSize(new java.awt.Dimension(800, 600));
+        setSize(new java.awt.Dimension(700, 400));
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        jPanelMain.setLayout(new java.awt.BorderLayout());
 
         jLabelTituloPantallaPrincipal.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabelTituloPantallaPrincipal.setText("GESTIÓN HOTELERA LA HABANA");
+        jLabelTituloPantallaPrincipal.setAlignmentY(0.0F);
+        jLabelTituloPantallaPrincipal.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 788, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addContainerGap()
+        javax.swing.GroupLayout jPanelNorteLayout = new javax.swing.GroupLayout(jPanelNorte);
+        jPanelNorte.setLayout(jPanelNorteLayout);
+        jPanelNorteLayout.setHorizontalGroup(
+            jPanelNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 700, Short.MAX_VALUE)
+            .addGroup(jPanelNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelNorteLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jLabelTituloPantallaPrincipal)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelNorteLayout.setVerticalGroup(
+            jPanelNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel2Layout.createSequentialGroup()
-                    .addGap(37, 37, 37)
+            .addGroup(jPanelNorteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelNorteLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jLabelTituloPantallaPrincipal)
-                    .addContainerGap(38, Short.MAX_VALUE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        jPanel1.add(jPanel2, java.awt.BorderLayout.NORTH);
+        jPanelMain.add(jPanelNorte, java.awt.BorderLayout.NORTH);
 
-        jPanelSalonesDisponibles.setLayout(new java.awt.GridBagLayout());
+        jPanelCentro.setMaximumSize(new java.awt.Dimension(700, 400));
+        jPanelCentro.setMinimumSize(new java.awt.Dimension(700, 400));
+        jPanelCentro.setPreferredSize(new java.awt.Dimension(700, 400));
 
         ButtonSalonHabana.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/salonLaHabanaOriginal.png"))); // NOI18N
         ButtonSalonHabana.setToolTipText("Salón La Habana");
@@ -89,17 +92,12 @@ public class PantallaPrincipal extends javax.swing.JFrame {
                 ButtonSalonHabanaActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(32, 34, 198, 529);
-        jPanelSalonesDisponibles.add(ButtonSalonHabana, gridBagConstraints);
+        jPanelCentro.add(ButtonSalonHabana);
 
-        jPanel1.add(jPanelSalonesDisponibles, java.awt.BorderLayout.CENTER);
+        jPanelMain.add(jPanelCentro, java.awt.BorderLayout.CENTER);
 
         jMenuInicio.setText("Inicio");
-        jMenuBar1.add(jMenuInicio);
+        jMenuBar.add(jMenuInicio);
 
         jMenuSalonesDisponibles.setText("Salones disponibles");
 
@@ -111,7 +109,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenuSalonesDisponibles.add(jMenuItemSalonHabana);
 
-        jMenuBar1.add(jMenuSalonesDisponibles);
+        jMenuBar.add(jMenuSalonesDisponibles);
 
         jMenuClientes.setText("Clientes");
 
@@ -123,24 +121,24 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         });
         jMenuClientes.add(jMenuItemAlta);
 
-        jMenuBar1.add(jMenuClientes);
+        jMenuBar.add(jMenuClientes);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(jMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(350, 350, 350)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(213, 213, 213)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelMain, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -231,14 +229,14 @@ public class PantallaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonSalonHabana;
     private javax.swing.JLabel jLabelTituloPantallaPrincipal;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenu jMenuClientes;
     private javax.swing.JMenu jMenuInicio;
     private javax.swing.JMenuItem jMenuItemAlta;
     private javax.swing.JMenuItem jMenuItemSalonHabana;
     private javax.swing.JMenu jMenuSalonesDisponibles;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanelSalonesDisponibles;
+    private javax.swing.JPanel jPanelCentro;
+    private javax.swing.JPanel jPanelMain;
+    private javax.swing.JPanel jPanelNorte;
     // End of variables declaration//GEN-END:variables
 }
