@@ -5,15 +5,18 @@ public class Usuario {
     private String nombre;
     private String apellido;
     private String email;
-    private int movil;
+    private int telefono;
     private boolean suscrito;
 
-    public Usuario(String nombre, String apellido, String email, int movil, boolean suscrito) {
+    public Usuario(String nombre, String apellido, int telefono, String email, boolean suscrito) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
-        this.movil = movil;
+        this.telefono = telefono;
         this.suscrito = suscrito;
+    }
+
+    public Usuario() {
     }
 
     public String getNombre() {
@@ -40,12 +43,12 @@ public class Usuario {
         this.email = email;
     }
 
-    public int getMovil() {
-        return movil;
+    public int getTelefono() {
+        return telefono;
     }
 
-    public void setMovil(int movil) {
-        this.movil = movil;
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
     }
 
     public boolean isSuscrito() {
