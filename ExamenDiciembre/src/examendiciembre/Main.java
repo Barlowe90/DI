@@ -2,6 +2,7 @@ package examendiciembre;
 
 import java.awt.Component;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -21,8 +22,8 @@ import javax.swing.table.TableColumn;
 public class Main extends javax.swing.JFrame {
 
     private String archivoSeleccionado;
-    DefaultTableModel model;
-    JFileChooser fileChooser;
+    private DefaultTableModel model;
+    private JFileChooser fileChooser;
 
     public Main() {
         initComponents();
@@ -44,6 +45,7 @@ public class Main extends javax.swing.JFrame {
         bCargar = new javax.swing.JButton();
         bBorrar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        bGuardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,7 +73,7 @@ public class Main extends javax.swing.JFrame {
         panelCentro.setLayout(panelCentroLayout);
         panelCentroLayout.setHorizontalGroup(
             panelCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 751, Short.MAX_VALUE)
         );
         panelCentroLayout.setVerticalGroup(
             panelCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,9 +115,20 @@ public class Main extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
         panelNorte.add(jButton1, gridBagConstraints);
+
+        bGuardar.setText("Guardar tabla");
+        bGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bGuardarActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        panelNorte.add(bGuardar, gridBagConstraints);
 
         mainPanel.add(panelNorte, java.awt.BorderLayout.NORTH);
 
@@ -176,8 +189,41 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_bBorrarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        AltaUsuario dialogo = new AltaUsuario(this, true);
+        dialogo.setLocationRelativeTo(null);
+        dialogo.setVisible(true);
+
+        Usuario nuevoUsuario = dialogo.getUsuario();
+
+        if (nuevoUsuario != null) {
+            model = (DefaultTableModel) tablaUsuarios.getModel();
+            model.addRow(new Object[]{
+                nuevoUsuario.getNombre(),
+                nuevoUsuario.getApellido(),
+                nuevoUsuario.getTelefono(),
+                nuevoUsuario.getEmail(),
+                nuevoUsuario.isSuscrito()
+            });
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void bGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarActionPerformed
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivoSeleccionado))) {
+            model = (DefaultTableModel) tablaUsuarios.getModel();
+
+            for (int row = 0; row < model.getRowCount(); row++) {
+                for (int col = 0; col < model.getColumnCount(); col++) {
+                    writer.write(model.getValueAt(row, col).toString());
+                    if (col < model.getColumnCount() - 1) {
+                        writer.write(",");
+                    }
+                }
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_bGuardarActionPerformed
 
     private void guardarEnArchivo() {
         try (PrintWriter writer = new PrintWriter(new FileWriter(archivoSeleccionado))) {
@@ -204,6 +250,7 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bBorrar;
     private javax.swing.JButton bCargar;
+    private javax.swing.JButton bGuardar;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel mainPanel;
