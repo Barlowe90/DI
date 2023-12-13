@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.management.modelmbean.ModelMBean;
 import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 import javax.swing.JTable;
@@ -146,6 +145,20 @@ public class Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    // actualizar
+    // model.setValueAt(valor, jtable.getSelectedRow(), 0);
+    
+    // si son de una lista
+    // Objeto o = new objeto()
+    // o.set....
+    // lista.add(o)
+    // for each o
+    // object a[] = new object[5] // size columnas
+    // a[0] = o.getNombre
+    // modelo.addRow(a)
+    // tabla.setModel(model)
+    
     private void bCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCargarActionPerformed
         int result = fileChooser.showOpenDialog(this);
         if (result == JFileChooser.APPROVE_OPTION) {
@@ -160,6 +173,7 @@ public class Main extends javax.swing.JFrame {
                 String line = linea[i].toString().trim();
                 String[] dataRow = line.split(",");
                 model.addRow(dataRow);
+//                model.addRow(new Object[]{colu1, colu2, colu3});
             }
 
             TableColumn booleanColumn = tablaUsuarios.getColumnModel().getColumn(4);
