@@ -69,11 +69,10 @@ public class PantallaSecundaria extends javax.swing.JDialog {
         setMinimumSize(new java.awt.Dimension(400, 600));
         setPreferredSize(new java.awt.Dimension(400, 600));
         setResizable(false);
-        getContentPane().setLayout(new java.awt.BorderLayout());
 
         labelTituloReservaSalon.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         labelTituloReservaSalon.setText("RESERVA SALÓN LA HABANA");
-        labelTituloReservaSalon.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        labelTituloReservaSalon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(labelTituloReservaSalon, java.awt.BorderLayout.NORTH);
 
         jButtonRealizarReserva.setText("Realizar reserva");
